@@ -559,9 +559,18 @@ EOF;
             <input type="submit" value="{$lang->login}" />
             <input type="hidden" name="do" value="login" />
         </p>
-        </form>
+        </form>     
     </div>
-</div>
+
+        <div>       
+            <p> 
+                Powered By <a href="https://mybb.com/" target="_blank" rel="noopener">MyBB</a>, 
+                &copy; 2002-{$copy_year}.<br />
+                Style by <a href="https://mybboard.pl/user-35621.html" target="_blank" title="mybboard.pl">myCreedo</a> &amp; <a href="http://community.mybb.com/user-6029.html" target="_blank" title="community.mybb.com">vintagedaddyo</a><br /> 
+            </p>
+        </div>
+
+   </div>
 </body>
 </html>
 EOF;
