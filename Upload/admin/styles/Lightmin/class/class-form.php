@@ -242,8 +242,8 @@ class Form extends DefaultForm
 		 {
             $select_add = '';
             // @ 244           
-            $selected = $select_add;
-			 if((!is_array($selected) || !empty($selected)) && ((string)$value == (string)$selected || (is_array($selected) && in_array((string)$value, $selected))))
+			 //if((!is_array($selected) || !empty($selected)) && ((string)$value == (string)$selected || (is_array($selected) && in_array((string)$value, $selected))))
+			 if((!is_array($selected) || !empty($selected)) && ((is_array($selected) && in_array((string)$value, $selected)) || (!is_array($selected) && (string)$value === (string)$selected)))
 			 {
 				 $select_add = " selected=\"selected\"";
 			 }
@@ -289,7 +289,13 @@ class Form extends DefaultForm
 				 $fselectcache[$forum['pid']][$forum['disporder']][$forum['fid']] = $forum;
 			 }
 		 }
- 
+
+ 		// @ 293
+		 if(empty($options['main_option']))
+         {
+             $options['main_option'] = null;
+         } 
+
 		 if($options['main_option'] && $is_first)
 		 {
 			 $select_add = '';
