@@ -27,11 +27,15 @@ function smmd_info()
 {
 
     return array(
-        'name' => 'Simple Mode Must Die!',
-        'compatability' => '18*',
-        'version' => '1.1',
-        'author' => 'Wildcard & Vintagedaddyo',
-    );
+        'name'          => 'Simple Mode Must Die!',
+        'description'   => 'Disables or re-enables simple mode',
+        'website'       => 'https://github.com/vintagedaddyo',
+        'author'        => 'Wildcard & Vintagedaddyo',
+        'authorsite'    => 'https://github.com/vintagedaddyo',
+        'version'       => '1.1',
+        'compatibility' => '18*',
+        'codename'      => 'simplemustdie'
+    );    
     
 }
 
@@ -82,7 +86,7 @@ function smmd_is_installed() {
 
   global $mybb; 
 
-  if(isset($mybb->settings['enable_smmd'])) 
+   if(isset($mybb->settings['enable_smmd']))
    { 
    
     return true; 
@@ -90,6 +94,7 @@ function smmd_is_installed() {
    } 
    
     return false;
+
 }
 
 /**
@@ -155,9 +160,19 @@ function smmd_uninstall()
 function smmd_admin_themes_begin()
 {
 
-    global $db, $mybb;
+    global $db, $mybb; 
     
-    if ($mybb->settings['enable_smmd'] == 1)
+    // if empty
+    if (empty($mybb->settings['enable_smmd']))     
+    { 
+       
+       // is null
+       $mybb->settings['enable_smmd'] = null;
+
+    }
+
+    // @ 
+    if ($mybb->settings['enable_smmd'] == 1)     
     {
         
       if ($mybb->input['action'] == "edit_stylesheet" && (!isset($mybb->input['mode']) || $mybb->input['mode'] == "simple"))
@@ -169,6 +184,7 @@ function smmd_admin_themes_begin()
       
     }
 
+    // @
     if ($mybb->settings['enable_smmd'] == 0)
     {
         

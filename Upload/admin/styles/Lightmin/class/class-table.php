@@ -210,6 +210,11 @@ class Table extends DefaultTable
 			 foreach($this->_headers as $key => $data)
 			 {
 				 $table .= "\t\t\t<th";
+	             // @ 215
+		         if(empty($data['extra']['class']))
+                 {
+                     $data['extra']['class'] = null;
+                 }					 
 				 if($key == 0)
 				 {
 					 $data['extra']['class'] .= " block__column--first first";

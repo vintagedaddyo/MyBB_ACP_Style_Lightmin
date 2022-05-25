@@ -80,7 +80,21 @@ function output_header($title="")
             "	document.write('<style type=\"text/css\">.popup_button { display: inline; } .popup_menu { display: none; }<\/style>');\n".
             "//]]>\n".
             "</script>\n";
+                
+        // ADD Progressbar
+        echo " <link rel=\"stylesheet\" href=\"styles/".$this->style."/inc/progbar/nprogress.css\"/>\n";
+        echo" <script type=\"text/javascript\" src=\"styles/".$this->style."/inc/progbar/nprogress.js\"></script>\n";
 
+        echo "<script>
+            //<![CDATA[
+            NProgress.configure({ showSpinner: false });
+            $(document).ready(function() {
+            NProgress.start();
+            NProgress.done();
+            }); 
+            //]]>
+            </script>\n";  
+            
     echo "	<script type=\"text/javascript\">
 //<![CDATA[
 var loading_text = '{$lang->loading_text}';
@@ -411,7 +425,7 @@ function _generate_breadcrumb()
     $trail = '';
     foreach($this->_breadcrumb_trail as $key => $crumb)
     {
-        if($this->_breadcrumb_trail[$key+1])
+        if(isset($this->_breadcrumb_trail[$key+1]))
         {
             $trail .= "<a href=\"{$crumb['url']}\" class=\"breadcrumb__link\"><span class=\"breadcrumb__text\">{$crumb['name']}</span></a> <i class=\"fas fa-chevron-right breadcrumb__separator\"></i>"; 
         }
@@ -447,6 +461,12 @@ function _generate_breadcrumb()
             $login_label_width = " style=\"width: ".((int)$lang->login_field_width+100)."px;\"";
             $login_container_width = " style=\"width: ".(410+((int)$lang->login_field_width))."px;\"";
         }
+
+        // @ 492
+        if(empty($login_page))
+        {
+            $login_page = null;
+        }           
 
         $login_page .= <<<EOF
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">

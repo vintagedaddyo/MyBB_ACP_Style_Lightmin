@@ -240,7 +240,9 @@ class Form extends DefaultForm
 		 $select .= ">\n";
 		 foreach($option_list as $value => $option)
 		 {
-			 $select_add = '';
+            $select_add = '';
+            // @ 244           
+            $selected = $select_add;
 			 if((!is_array($selected) || !empty($selected)) && ((string)$value == (string)$selected || (is_array($selected) && in_array((string)$value, $selected))))
 			 {
 				 $select_add = " selected=\"selected\"";
