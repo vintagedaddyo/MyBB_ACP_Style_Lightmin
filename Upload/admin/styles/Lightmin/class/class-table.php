@@ -58,8 +58,12 @@ class Table extends DefaultTable
 		 foreach($this->_cells as $key => $cell)
 		 {
 			 $cells .= "\t\t\t<td";
-			 
-			 if(!isset($cell['extra']['class'])) $cell['extra']['class'] = '';
+
+			 // @ 62
+			 if(!isset($cell['extra']['class']))
+			 {
+				$cell['extra']['class'] = '';
+			 }
 			  
 			 if($key == 0)
 			 {
@@ -211,10 +215,10 @@ class Table extends DefaultTable
 			 {
 				 $table .= "\t\t\t<th";
 	             // @ 215
-		         if(empty($data['extra']['class']))
-                 {
-                     $data['extra']['class'] = null;
-                 }					 
+				 if(!isset($data['extra']['class']))
+				 {
+				 	$data['extra']['class'] = '';
+				 }					 
 				 if($key == 0)
 				 {
 					 $data['extra']['class'] .= " block__column--first first";
@@ -254,7 +258,12 @@ class Table extends DefaultTable
 			 {
 				 $table .= " id=\"{$table_row['extra']['id']}\"";
 			 }
-			 
+			 // @ 260
+			 if(!isset($table_row['extra']['class']))
+			 {
+			 	$table_row['extra']['class'] = '';
+			 }	
+
 			 $table_row['extra']['class'] = ' block__row';
  
 			 if($key == 0)
